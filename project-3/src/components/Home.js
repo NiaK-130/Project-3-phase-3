@@ -8,9 +8,19 @@ export default function Home() {
         .then((data) => console.log(data));
       }, [])
 
-    return (
-        <div className="App">
-        <h1>Welcome home</h1>
-        </div>
-    )
+    //   function handleSubmit(e) {
+    //     e.preventDefault()
+
+    // }
+
+    // return (
+    //     <div className="App">
+    //     <h1>Logo image</h1>
+    //     <form onSubmit={handleSubmit}>
+    //         <input type="text" placeholder="username" />
+    //         <input type="text" placeholder="password" />
+    //         <input type="submit" value="Login"/>
+    //     </form>
+    // </div>
+    // )
 }
