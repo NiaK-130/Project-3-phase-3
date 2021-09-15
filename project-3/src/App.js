@@ -64,7 +64,7 @@ function App() {
         </nav> 
         <Switch>
           <Route exact path="/patients">
-            <Patients patients={currentUser.patients}/>
+            <Patients patients={currentUser.patients} currentUser={currentUser}/>
           </Route>
           <Route exact path="/calendar">
             <Calendar patients={currentUser.patients}/>

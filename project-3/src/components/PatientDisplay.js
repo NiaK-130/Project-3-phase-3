@@ -1,11 +1,9 @@
 import {useEffect} from 'react'
-export default function PatientDisplay({patient}) {
+export default function PatientDisplay({patient, deletePatient}) {
 
-    // useEffect(() => {
-    //     fetch("http://localhost:9292/patients")
-    //     .then((r) => r.json())
-    //     .then((data) => console.log(data));
-    //   }, [])
+    function handleClick() {
+        deletePatient(patient.id)
+    }
 
     return (
         <div className="div-class">
@@ -13,6 +11,7 @@ export default function PatientDisplay({patient}) {
             <p>Medical History: {patient.medical_history}</p>
             <p>Insured: {patient.insured ? "true" : "false"}</p>
             <p>Age: {patient.age}</p>
+            <button onClick={handleClick}>Remove Patient</button>
         </div>
     )
 }

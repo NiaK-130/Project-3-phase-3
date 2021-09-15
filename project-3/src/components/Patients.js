@@ -1,17 +1,36 @@
 import {useEffect, useState} from 'react'
-
+import NewPatientForm from "./NewPatientForm"
 import PatientDisplay from "./PatientDisplay"
-export default function Patients() {
+export default function Patients({currentUser}) {
+
+    const [form, openCloseForm] = useState(false)
     const [patients, setPatients] = useState([])
+
+    function handleClick(e) {
+        e.preventDefault()
+        openCloseForm(!form)
+    }
+
+    function deletePatient(id) {
+        fetch(`http://localhost:9292/patients/${id}`, {
+            method: "DELETE",
+          })
+            .then((r) => r.json())
+            .then(data => setPatients(data));
+    }
+
     useEffect(() => {
         fetch("http://localhost:9292/patients")
         .then((r) => r.json())
         .then((data) => setPatients(data));
       }, [])
+
     return (
         <div className="App">
             <h1>Your patients:</h1>
-            {patients.map((patient) => <PatientDisplay patient={patient} key={patient.id} />)}
+            <button onClick={handleClick}>Add Patient</button>
+            {form ? <NewPatientForm currentUser={currentUser} /> : ''}
+            {patients.map((patient) => <PatientDisplay deletePatient={deletePatient} patient={patient} key={patient.id} />)}
         </div>
     )
 }
