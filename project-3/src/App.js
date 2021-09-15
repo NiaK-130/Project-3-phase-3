@@ -1,56 +1,40 @@
-import { Route, BrowserRouter as Router, Switch, Link } from "react-router-dom"
+import { Route, BrowserRouter as Router, Switch, NavLink } from "react-router-dom"
 import './App.css';
-import Nav1 from "./components/Nav1"
+import React, {useState} from 'react';
+import Patients from "./components/Patients"
 import Nav2 from "./components/Nav2"
+import Login from "./components/Login"
 import Home from "./components/Home"
 
-function handleSubmit(e) {
-  e.preventDefault()
-
-}
 
 function App() {
-  
+  const [loggedIn, setLoggedIn] = useState(false)
+  function login() {
+    setLoggedIn(!loggedIn)
+  }
   return (
-    
-    <Router >
-      <div>
-        {/* <nav className="App nav-bar">
-          <NavLink className="nav-bar" to="/">Home</NavLink>
-          <NavLink className="nav-bar" to="/nav1">nav1</NavLink>
-          <NavLink className="nav-bar" to="/nav2">nav2</NavLink>
-        </nav> */}
-
-        <img src = "./project-3/public/Med-ViewLogo.png" alt = "Medview-logo"/>
-
+    <div>
+    {loggedIn ?
+    <div>
+    <Router>
+    <nav className="App nav-bar">
+      <NavLink className="nav-bar" to="/">Home</NavLink>
+      <NavLink className="nav-bar" to="/patients">Patients</NavLink>
+      <NavLink className="nav-bar" to="/nav2">nav2</NavLink>
+    </nav>
       <Switch>
-      <Route exact path="/">
-        <Link to = "/home">
-        <div className = "MDview-logo-container">
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="username" />
-            <input type="text" placeholder="password" />
-            <input type="submit" value="Login"/>
-        </form>
-
-    )
-              </div>
-
-
-        </Link>
-          
+        <Route exact path="/patients">
+          <Patients />
         </Route>
-        
-        <Route path="/nav1">
-          <Nav1 />
-        </Route>
-        <Route path="/nav2">
+        <Route exact path="/nav2">
           <Nav2 />
         </Route>
-        <Route path ="*"><h1 className="page-not-found">404 Page Not Found :(</h1></Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
       </Switch>
+      </Router>  </div> : <Login login={login}/>}
       </div>
-    </Router>
   );
 }
 
