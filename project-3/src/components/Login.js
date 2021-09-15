@@ -1,25 +1,37 @@
-import React, {useEffect, useState} from 'react';
-export default function Login({login}) {
 
-    const [messages, setMessages] = useState('')
+import React, {useState} from 'react';
+export default function Login({login, doctors}) {
 
-    useEffect(() => {
-        fetch("http://localhost:9292/login")
-        .then((r) => r.json())
-        .then((data) => setMessages(data));
-      }, [])
+    const [username, setUserName] = useState('')
+    const [password, setPassword] = useState('')
 
       function handleSubmit(e) {
           e.preventDefault()
-          login()
+          doctors.forEach((doc) => { 
+              if ((doc.username === username) && (doc.password === password)) {
+                login(doc.id)
+              } else if ((doc.username !== username) && (doc.password !== password)){
+                  console.log("incorrect username or password")
+              }
+          })
+      }
+
+      function handleUsernameChange(e) {
+        e.preventDefault()
+        setUserName(e.target.value)
+      }
+
+      function handlePasswordChange(e) {
+        e.preventDefault()
+        setPassword(e.target.value)
       }
 
     return (
         <div className="App">
-          <img className = "logo-img" src = "./Images/Med-ViewLogo.png" alt = "medview-log"/>
+            <h1>Login</h1>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="username" />
-                <input type="text" placeholder="password" />
+                <input type="text" placeholder="username" value={username} onChange={handleUsernameChange}/>
+                <input type="text" placeholder="password" value={password} onChange={handlePasswordChange}/>
                 <input type="submit" value="Login"/>
             </form>
         </div>
