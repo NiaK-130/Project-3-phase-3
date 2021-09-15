@@ -1,11 +1,15 @@
 
-export default function Home({currentUser}) {
+export default function Home({currentUser, logout}) {
 
     // useEffect(() => {
     //     fetch("http://localhost:9292")
     //     .then((r) => r.json())
     //     .then((data) => console.log(data));
     //   }, [])
+
+    function handleClick() {
+        logout(currentUser.id)
+    }
 
     return (
         <div className="App">
@@ -15,6 +19,7 @@ export default function Home({currentUser}) {
             <p>id: {currentUser.id}</p>
             <p>Username: {currentUser.username}</p>
             <p>Password: {currentUser.password}</p>
+        <button onClick={handleClick}>Logout</button>
         </div>
     )
 }

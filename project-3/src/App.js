@@ -18,12 +18,38 @@ function App() {
     fetch("http://localhost:9292/login")
     .then((r) => r.json())
     .then((data) => setDoctors(data));
-  }, [])
+  }, [currentUser])
 
-
+  console.log(doctors.map((doctor) => doctor.current_user))
+  
   function login(id) {
     setLoggedIn(!loggedIn)
-    doctors.forEach((doc) => doc.id === id ? setCurrentUser(doc) : '')
+    fetch(`http://localhost:9292/doctors/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        current_user: true,
+      }),
+    })
+      .then((r) => r.json())
+      .then((data) => setCurrentUser(data));
+  }
+
+  function logout(id) {
+    setLoggedIn(!loggedIn)
+    fetch(`http://localhost:9292/doctors/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        current_user: false,
+      }),
+    })
+      .then((r) => r.json())
+      .then((data) => setCurrentUser(''));
   }
 
   return (
@@ -41,10 +67,10 @@ function App() {
             <Patients patients={currentUser.patients}/>
           </Route>
           <Route exact path="/calendar">
-            <Calendar />
+            <Calendar patients={currentUser.patients}/>
           </Route>
           <Route exact path="/">
-            <Home currentUser={currentUser}/>
+            <Home currentUser={currentUser} logout={logout}/>
           </Route>
         </Switch> 
       </Router>  

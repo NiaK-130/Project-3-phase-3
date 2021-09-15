@@ -1,16 +1,21 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
-export default function Nav2() {
+import AppointmentDisplay from "./AppointmentDisplay"
+export default function Calendar() {
+
+    const [appointments, setAppointments] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:9292/calendar")
+        fetch("http://localhost:9292/appointments")
         .then((r) => r.json())
-        .then((data) => console.log(data));
+        .then((data) => setAppointments(data))
       }, [])
-
+    // console.log(appointments.map((patientAppts) => patientAppts.forEach((appt) => appt.date)))
+    // console.log(patients.map((patient) => patient.appointments))
     return (
         <div className="App">
-        <h1>hiii</h1>
+        <h1>Upcoming appointments:</h1>
+        {appointments.map((appointment) =>  <AppointmentDisplay key={appointment.id} appointment={appointment}/>)}
         </div>
     )
 }

@@ -2,8 +2,8 @@
 import React, {useState} from 'react';
 export default function Login({login, doctors}) {
 
-    const [username, setUserName] = useState('')
-    const [password, setPassword] = useState('')
+    const [username, setUserName] = useState('drcole123')
+    const [password, setPassword] = useState('password1')
 
       function handleSubmit(e) {
           e.preventDefault()

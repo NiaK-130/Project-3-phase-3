@@ -1,5 +1,11 @@
-import React from 'react'
+import {useEffect} from 'react'
 export default function PatientDisplay({patient}) {
+
+    // useEffect(() => {
+    //     fetch("http://localhost:9292/patients")
+    //     .then((r) => r.json())
+    //     .then((data) => console.log(data));
+    //   }, [])
 
     return (
         <div className="div-class">
