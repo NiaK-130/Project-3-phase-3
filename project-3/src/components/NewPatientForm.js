@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-export default function NewPatientForm({currentUser}) {
+export default function NewPatientForm({currentUser, addPatient}) {
 
     const [patientName, setPatientName] = useState('')
     const [medicalHistory, setMedicalHistory] = useState('')  
@@ -14,21 +14,23 @@ export default function NewPatientForm({currentUser}) {
         console.log('hello')
         console.log(patientName)
 
-        fetch("http://localhost:9292/patients", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: patientName,
-              medical_history: medicalHistory,
-              insured: insured,
-              age: age,
-              doctor_id: currentUser.id
-            }),
-          })
-            .then((r) => r.json())
-            .then(data => console.log(data));
+        addPatient(patientName, medicalHistory, insured, age, currentUser)
+
+        // fetch("http://localhost:9292/patients", {
+        //     method: "POST",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //       name: patientName,
+        //       medical_history: medicalHistory,
+        //       insured: insured,
+        //       age: age,
+        //       doctor_id: currentUser.id
+        //     }),
+        //   })
+        //     .then((r) => r.json())
+        //     .then(data => console.log(data));
     }
 
     function handleChange(e) {
