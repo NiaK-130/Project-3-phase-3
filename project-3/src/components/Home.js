@@ -13,13 +13,28 @@ export default function Home({currentUser, logout}) {
 
     return (
         <div className="App">
-        <h1>Welcome, {currentUser.name}</h1>
-        <h2>Your info:</h2>
-            <p>Medical specialty: {currentUser.specialty}</p>
-            <p>id: {currentUser.id}</p>
-            <p>Username: {currentUser.username}</p>
-            <p>Password: {currentUser.password}</p>
-        <button onClick={handleClick}>Logout</button>
+            <div className = "App-main">
+                <img src = "" alt = ""/>
+                <h1 className = "welcome-text-home">Welcome {currentUser.name}</h1>
+                    <div className = "info-box">
+                        <p>Medical specialty: {currentUser.specialty}</p>
+                        <p classname = "location-home"> Location: </p>
+                        <p> Ph: </p>
+                        <p> Been in practice for: </p>
+                    </div>
+            </div>
+                <div className = "reminders-block">
+                    <h2>Reminders:</h2>
+                </div>
+
+                <div className = "answers-insights-block">
+                    <h3>My Answers and Insights have: </h3>
+                </div>
+
+            <button className = "sign-out-button" onClick={handleClick}>Sign Out</button>
+            
+          
         </div>
+       
     )
 }

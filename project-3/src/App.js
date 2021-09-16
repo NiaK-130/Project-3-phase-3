@@ -57,10 +57,12 @@ function App() {
     {loggedIn ?
     <div>
       <Router>
-        <nav className="App nav-bar">
-          <NavLink className="nav-bar" to="/">Home</NavLink>
-          <NavLink className="nav-bar" to="/patients">Patients</NavLink>
-          <NavLink className="nav-bar" to="/calendar">Calendar</NavLink>
+        <nav className="navbar-container">
+
+         <h3  className="nav-bar-new" to="/"> {currentUser.name} </h3>
+          <NavLink  className="nav-bar-a" to="/"> Home</NavLink>
+          <NavLink className="nav-bar-b" to="/patients"> Patients</NavLink>
+          <NavLink className="nav-bar-c" to="/calendar"> Calendar</NavLink>
         </nav> 
         <Switch>
           <Route exact path="/patients">
