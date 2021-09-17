@@ -11,15 +11,18 @@ export default function Home({currentUser, logout}) {
     }
 
     return (
-        <div className="App">
+        <div className="App-home">
             <div className = "App-main">
+                <div className="welcome-header">
                 <h1 className = "welcome-text-home">Welcome Dr. {currentUser.name}</h1>
-                <img src={currentUser.image_link} alt="doctor image"/>
+                </div>
+                <img className = "dr-image" src={currentUser.image_link} alt="doctor image"/>
                     <div className = "info-box">
-                        <p>Medical specialty: {currentUser.specialty}</p>
-                        <p className = "location-home"> Location: {currentUser.location}</p>
+                        <h3>Medical specialty: </h3> {currentUser.specialty}
+                        <h3 className = "location-home"> Location: </h3> {currentUser.location}
+                        <h4> Been in practice for: {currentUser.been_in_practice_for} years</h4>
                         <p> Ph: {currentUser.phone_number}</p>
-                        <p> Been in practice for: {currentUser.been_in_practice_for} years</p>
+                        
                     </div>
             </div>
                 <div className = "reminders-block">
@@ -27,8 +30,8 @@ export default function Home({currentUser, logout}) {
                     <p>{currentUser.reminders}</p>
                 </div>
 
-                <div className = "answers-insights-block">
-                    <h3>Awards:</h3>
+                <div className = "awards-block">
+                    <h4>Awards:</h4>
                     <p>{currentUser.awards}</p>
                 </div>
 

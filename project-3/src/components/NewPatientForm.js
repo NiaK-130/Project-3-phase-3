@@ -40,12 +40,16 @@ export default function NewPatientForm({currentUser, addPatient}) {
 
     return (
         <form onSubmit={handleSubmit}>
-             <input type="text" placeholder="name" value={patientName} onChange={(e) => setPatientName(e.target.value)}/>
-             <input type="text" placeholder="medical history" value={medicalHistory} onChange={(e) => setMedicalHistory(e.target.value)}/>
-             <label for="insured">Insured</label>
-             <input type="checkbox" id="insured" name="insured" onChange={handleChange}/>
-             <input type="text" placeholder="age" value={age} onChange={(e) => setAge(e.target.value)}/>
-             <input type="submit" name="submit" value="submit"/>
+             <input className = "name-input" type="text" placeholder="Add Full Name" value={patientName} onChange={(e) => setPatientName(e.target.value)}/>
+             <input className = "medical-history-input" type="text" placeholder="Provide Medical History" value={medicalHistory} onChange={(e) => setMedicalHistory(e.target.value)}/>
+             <input className = "age-input" type="text" placeholder="Age" value={age} onChange={(e) => setAge(e.target.value)}/>
+             <h3 className = "insured-text">
+             <label className = "insured-input" for="insured">Are they Insured? </label>
+             </h3>
+             <div className = "checkbox-div">
+             <input className = "checkbox-input" type="checkbox" id="insured" name="insured" onChange={handleChange}/>
+             </div>
+             <input className = "submit-input" type="submit" name="submit" value="Submit"/>
         </form>
     )
 }

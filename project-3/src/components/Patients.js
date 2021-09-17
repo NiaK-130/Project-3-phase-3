@@ -45,9 +45,11 @@ export default function Patients({currentUser}) {
       }, [currentUser])
 
     return (
-        <div className="App">
-            <h1>Your patients:</h1>
-            <button onClick={handleClick}>Add Patient</button>
+        <div className="App-patient">
+            <h1 className = "patients-header">Your patients:</h1>
+            <div className = "patient-button-container">
+            <button className = "add-patient-button" onClick={handleClick}>Add Patient</button>
+            </div>
             {form ? <NewPatientForm addPatient={addPatient} currentUser={currentUser} /> : ''}
             {patients.map((patient) => <PatientDisplay deletePatient={deletePatient} patient={patient} key={patient.id} />)}
         </div>

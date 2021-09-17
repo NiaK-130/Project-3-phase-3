@@ -14,7 +14,7 @@ export default function Calendar() {
     // console.log(patients.map((patient) => patient.appointments))
     return (
         <div className="App">
-        <h1>Upcoming appointments:</h1>
+        <h1 className = "upcoming-appointments-text" >Upcoming appointments:</h1>
         {appointments.map((appointment) =>  <AppointmentDisplay key={appointment.id} appointment={appointment}/>)}
         </div>
     )

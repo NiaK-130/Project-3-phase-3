@@ -13,11 +13,13 @@ export default function AppointmentDisplay({appointment}) {
 //   console.log(appointments)
 
     return (
-        <div className="div-class">
-            <h2>{appointment.date}</h2>
-            <p>Time: {appointment.time}</p>
-            <p>Reason for visit: {appointment.reason_for_visit}</p>
-            <p>Patient name: {appointment.patient.name}</p>
+        <div className="appointment-info-box">
+            <h3>{appointment.date}</h3>
+            <h4>Time: </h4> {appointment.time}
+            <h4>Reason for visit: </h4> {appointment.reason_for_visit}
+            <h4>Patient name: </h4> {appointment.patient.name}
         </div>
     )
 }
+
+
